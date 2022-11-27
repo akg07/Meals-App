@@ -82,33 +82,30 @@ const getSearchValue = () => {
                     const isFav = favFoodList.filter(favId => {
                                     if(Number(foodId) === favId) return true;
                                     return false;
-                                })
-                    let foodDiv;
-                    console.log(isFav);
+                                });
 
-                    if(isFav.length != 0){
-                    foodDiv = `<div class="card card-style " style="width: 14rem;">
-                                        <img class="card-img-top" src="${foodImg}" alt="Card Food Image" onclick="getmealDetails(${foodId})">
-                                        <div class="card-body">
-                                            <h6 class="card=text" onclick="getmealDetails(${foodId})">${foodName}</h6>
-                                            <div id="favIcon">
-
-                                                <img id="addFavList-${foodId}" onclick="addFavList(${foodId})" src="./assets/images/red-heart.png" alt="Empty heart" width="25" height="25" />
-                                            </div>
-                                        </div>
-                                    </div>`;
-                    }else{
-                        foodDiv = `<div class="card card-style " style="width: 14rem;">
-                                        <img class="card-img-top" src="${foodImg}" alt="Card Food Image" onclick="getmealDetails(${foodId})">
-                                        <div class="card-body">
-                                            <h6 class="card=text" onclick="getmealDetails(${foodId})">${foodName}</h6>
-                                            <div id="favIcon">
-
-                                                <img id="addFavList-${foodId}" onclick="addFavList(${foodId})" src="./assets/images/white-heart.png" alt="Empty heart" width="25" height="25" />
-                                            </div>
-                                        </div>
-                                    </div>`;
+                    let faVIconImage;
+                    let favString;
+                    if(isFav.length != 0) {
+                        // it's fav food
+                        faVIconImage = "./assets/images/red-heart.png";
+                        favString = "yes";
+                    }else {
+                        // it's not a fav food
+                        faVIconImage = "./assets/images/white-heart.png";
+                        favString = "no";
                     }
+
+                    const foodDiv = `<div class="card card-style " style="width: 14rem;">
+                                        <img class="card-img-top" src="${foodImg}" alt="Card Food Image" onclick="getmealDetails(${foodId})">
+                                        <div class="card-body">
+                                            <h6 class="card=text" onclick="getmealDetails(${foodId})">${foodName}</h6>
+                                            <div id="favIcon">
+                                                <img id="addFavList-${foodId}" onclick="addFavList(${foodId})" src=${faVIconImage} alt="Empty heart" width="25" height="25" data-fav=${favString} />
+                                            </div>
+                                        </div>
+                                    </div>`;
+
                     foodContainer.innerHTML = foodDiv;
                     mealListSection.appendChild(foodContainer);
                 });

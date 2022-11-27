@@ -11,37 +11,37 @@ if(! JSON.parse(localStorage.getItem('list'))) {
 // add and remove from favriote list
 const addFavList = (id) => {
 
-console.log(id);
+    console.log(id);
     const elementId = "addFavList-" + id;
     const favBtn = document.getElementById(elementId);
-
+    
+    console.log(favBtn.dataset.fav);
+    let favValue = favBtn.dataset.fav;
     // add in favList
-    if(favBtn.src == "http://127.0.0.1:5500/assets/images/white-heart.png" || favBtn.src == "http://localhost:5500/assets/images/white-heart.png"){
+    if(favValue == "no"){
         favBtn.src = "./assets/images/red-heart.png";
 
         console.log(favList);
 
         favList.push(id);
         localStorage.setItem('list', JSON.stringify(favList));
-
+        favBtn.setAttribute("data-fav", "yes");
+        
         // console.log(favList);
-
+        
     }
     // remove from fav List
     else {
         favBtn.src = "./assets/images/white-heart.png"
 
         favList = JSON.parse(localStorage.getItem('list'));
-
-        console.log(favList);
-
+        
         favList = favList.filter(foodId => {
             return foodId !== id;
         });
-
-        console.log(favList);
-
+        
         localStorage.setItem('list', JSON.stringify(favList));
+        favBtn.setAttribute("data-fav", "no");
     }
 }
 
