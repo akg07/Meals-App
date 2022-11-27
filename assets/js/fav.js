@@ -1,7 +1,9 @@
-console.log('loaded fav.js');
+// Fav List Module
 let favList;
+
+// If no favList Present then local storage then add a list key in it
 if(! JSON.parse(localStorage.getItem('list'))) {
-    favList = [52877];
+    favList = [];
     localStorage.setItem('list', JSON.stringify(favList));
 }else {
     favList = JSON.parse(localStorage.getItem('list'));
@@ -20,8 +22,6 @@ const addFavList = (id) => {
     // add in favList
     if(favValue == "no"){
         favBtn.src = "./assets/images/red-heart.png";
-
-        console.log(favList);
 
         favList.push(id);
         localStorage.setItem('list', JSON.stringify(favList));

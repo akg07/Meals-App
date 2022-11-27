@@ -6,6 +6,7 @@ const mealListSection = document.getElementById("meal-list-section");
 
 const favFoodList = JSON.parse(localStorage.getItem('list'));
 
+// click on any button on keyboard
 inputBox.onkeyup = (e) => {
     let userData = e.target.value;
     let suggestionsArray = [];
@@ -39,6 +40,7 @@ function select(element) {
     searchWrapper.classList.remove("active");
 }
 
+// show suggesstions while typing on search bar
 function showSuggestions(list) {
     let listData;
     if(!list.length) {
@@ -51,13 +53,8 @@ function showSuggestions(list) {
     suggBox.innerHTML = listData;
 }
 
-const checkFav = (id) => {
 
-    
-
-    return false;
-}
-
+// after clicking on search icon call api and show result
 const getSearchValue = () => {
     const autoCompleteBox = document.getElementById("autoComplete");
     suggBox.innerHTML = "";
